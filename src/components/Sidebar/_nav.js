@@ -1,6 +1,31 @@
 export default {
   items: [
     {
+      name: 'Students',
+      url: '/students',
+      icon: 'icon-people'
+    },
+    {
+      name: 'Awards',
+      url: '/awards',
+      icon: 'icon-trophy'
+    },
+    {
+      name: 'Academic Calendar',
+      url: '/academic-calendar',
+      icon: 'icon-calendar'
+    },
+    {
+      name: 'Events',
+      url: '/events',
+      icon: 'icon-graduation'
+    },
+    {
+      name: 'Lessons and Fees',
+      url: '/lessons',
+      icon: 'icon-credit-card'
+    },
+    {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',

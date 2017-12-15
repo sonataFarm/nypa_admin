@@ -46,17 +46,21 @@ import Inbox from '../../views/UI-Kits/Email/Inbox/';
 import Message from '../../views/UI-Kits/Email/Message/';
 import Compose from '../../views/UI-Kits/Email/Compose/';
 
+// Views
+import Students from '../../views/Students/'
+
 class Full extends Component {
   render() {
     return (
       <div className="app">
         <Header />
         <div className="app-body">
-          <Sidebar {...this.props}/>
+          <Sidebar { ...this.props }/>
           <main className="main">
             <Breadcrumb />
             <Container fluid>
               <Switch>
+                <Route path='/students' name='Students' component={Students} />
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/components/buttons" name="Buttons" component={Buttons}/>
                 <Route path="/components/cards" name="Cards" component={Cards}/>

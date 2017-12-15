@@ -47,7 +47,13 @@ class Sidebar extends Component {
     // nav list section title
     const title =  (title, key) => {
       const classes = classNames( 'nav-title', title.class);
-      return (<li key={key} className={ classes }>{wrapper(title)} </li>);
+      return (
+        <li
+          key={ key }
+          className={ classes }>
+          { wrapper(title) } </li>
+      );
+
     };
 
     // nav list divider
@@ -105,7 +111,7 @@ class Sidebar extends Component {
     // nav dropdown
     const navDropdown = (item, key) => {
       return (
-        <li key={key} className={activeRoute(item.url, props)}>
+        <li key={key} className={ activeRoute(item.url, props) }>
           <a className="nav-link nav-dropdown-toggle" href="#" onClick={handleClick.bind(this)}><i className={item.icon}></i>{item.name}</a>
           <ul className="nav-dropdown-items">
             {navList(item.children)}
@@ -134,15 +140,15 @@ class Sidebar extends Component {
     // sidebar-nav root
     return (
       <div className="sidebar">
-        <SidebarHeader/>
-        <SidebarForm/>
+        <SidebarHeader />
+        <SidebarForm />
         <nav className="sidebar-nav">
           <Nav>
             {navList(nav.items)}
           </Nav>
         </nav>
-        <SidebarFooter/>
-        <SidebarMinimizer/>
+        <SidebarFooter />
+        <SidebarMinimizer />
       </div>
     )
   }

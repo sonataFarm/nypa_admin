@@ -13,11 +13,11 @@ class DataTable extends Component {
     this.options = {
       sortIndicator: true,
       hideSizePerPage: true,
-      paginationSize: 3,
+      paginationSize: 10,
       hidePageListOnlyOnePage: true,
       clearSearch: true,
-      alwaysShowAllBtns: false,
-      withFirstAndLast: false
+      // alwaysShowAllBtns: false,
+      // withFirstAndLast: false
     }
 
   }
