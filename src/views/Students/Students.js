@@ -17,11 +17,16 @@ class Students extends Component {
     };
     this.selectRow = {
       mode: 'checkbox',
-
-    }
+    };
   }
 
   render() {
+    const editButton = (cell, row) => (
+      <div>
+        <a href={`/students/${cell}`}><i className="icon-note"></i></a>
+      </div>
+    );
+
     return (
       <div className="animated">
         <Card>
@@ -41,14 +46,18 @@ class Students extends Component {
               deleteRow
               selectRow={this.selectRow}
             >
-              <TableHeaderColumn dataField="name" dataSort isKey={true}>
-                Name
-              </TableHeaderColumn>
+              <TableHeaderColumn dataField="id" isKey hidden />
               <TableHeaderColumn dataField="name" dataSort>
                 Name
               </TableHeaderColumn>
               <TableHeaderColumn dataField="name" dataSort>
                 Name
+              </TableHeaderColumn>
+              <TableHeaderColumn dataField="age" dataSort>
+                Active
+              </TableHeaderColumn>
+              <TableHeaderColumn dataField="id" dataFormat={editButton}>
+                Edit
               </TableHeaderColumn>
             </BootstrapTable>
           </CardBody>
