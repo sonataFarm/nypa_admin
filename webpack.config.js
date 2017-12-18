@@ -107,6 +107,9 @@ module.exports = (env = {}) => {
         ],
         {copyUnmodified: false}
       )
-    ]
+    ],
+    resolve: {
+      extensions: ['.js', '.jsx']
+    }
   }
 };
