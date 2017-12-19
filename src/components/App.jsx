@@ -7,7 +7,10 @@ import Register from '../views/Pages/Register/'
 import Page404 from '../views/Pages/Page404/'
 import Page500 from '../views/Pages/Page500/'
 
-const App = () =>
+// Containers
+import Full from '../containers/Full/'
+
+const App = () => (
   <Switch>
     <Route exact path="/login" name="Login Page" component={Login}/>
     <Route exact path="/register" name="Register Page" component={Register}/>
