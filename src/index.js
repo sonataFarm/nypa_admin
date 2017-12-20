@@ -14,10 +14,6 @@ import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
 
-// Containers
-import Full from './containers/Full/'
-
-
 
 ReactDOM.render((
   <BrowserRouter>

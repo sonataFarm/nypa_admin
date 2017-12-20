@@ -49,10 +49,10 @@ class Students extends Component {
             >
               <TableHeaderColumn dataField="id" isKey hidden />
               <TableHeaderColumn dataField="name" dataSort>
-                Name
+                First
               </TableHeaderColumn>
               <TableHeaderColumn dataField="name" dataSort>
-                Name
+                Last
               </TableHeaderColumn>
               <TableHeaderColumn dataField="age" dataSort>
                 Active
