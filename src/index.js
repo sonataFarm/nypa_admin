@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import App from './components/App';
+import { configureStore } from './store/store';
 
-// Styles
+
+import Root from './components/Root';
+
 // Import Font Awesome Icons Set
 import 'font-awesome/css/font-awesome.min.css';
 // Import Simple Line Icons Set
@@ -14,9 +16,11 @@ import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
 
+docuent.addEventListener('DOMContentLoaded', () => {
+  const root = document.getElementById('root');
 
-ReactDOM.render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-), document.getElementById('root'));
+  ReactDOM.render(
+    <Root store={store} />,
+    root
+  );
+})
