@@ -16,11 +16,10 @@ import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
 
-docuent.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+  const store = configureStore();
   const root = document.getElementById('root');
 
   ReactDOM.render(
-    <Root store={store} />,
-    root
-  );
+    <Root store={store} />, root);
 })

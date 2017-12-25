@@ -5,7 +5,7 @@ const StudentsReducer = (state = {}, action) => {
     case RECEIVE_STUDENTS:
       return {
         ...state,
-        action.students
+        ...action.students
       };
 
     case RECEIVE_SINGLE_STUDENT:
@@ -13,6 +13,9 @@ const StudentsReducer = (state = {}, action) => {
         ...state,
         ...action.student
       };
+
+    default:
+      return state;
   }
 };
 
