@@ -18,7 +18,10 @@ import '../scss/core/_dropdown-menu-right.scss'
 
 // !!! Testing and debugging
 import Query from 'graphql-query-builder';
+import APIUtil from './util/api_util';
+window.APIUtil = APIUtil;
 window.Query = Query;
+
 /// !!! end
 
 document.addEventListener('DOMContentLoaded', () => {
