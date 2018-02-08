@@ -16,10 +16,16 @@ import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
 
+// !!! Testing and debugging
+import Query from 'graphql-query-builder';
+window.Query = Query;
+/// !!! end
+
 document.addEventListener('DOMContentLoaded', () => {
   const store = configureStore();
+  window.store = store;
   const root = document.getElementById('root');
 
   ReactDOM.render(
     <Root store={store} />, root);
-})
+});
