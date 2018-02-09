@@ -2,8 +2,8 @@ import { mutation } from './graphql_util';
 import $ from 'jquery';
 import Query from 'graphql-query-builder';
 
-const getAllStudents = () => {
-  const query = "query {allStudents {firstName, lastName}}"
+const fetchAllStudents = () => {
+  const query = "query {allStudents {id, firstName, lastName}}"
 
   return $.ajax({
     method: 'POST',
@@ -12,15 +12,20 @@ const getAllStudents = () => {
   });
 }
 
-const createStudent = (first, last, active = true) => {
-  const query = mutation(new Query(
-    "createStudent",
-    {
-      name: { first, last },
-      active
-     }).find("firstName", "lastName")
-      .toString()
-  );
+const createStudent = (firstName, lastName, active = true) => {
+  const query = `query {
+    createStudent(
+      name: {
+        first: ${firstName},
+        last: ${lastName}
+      },
+      active: ${active}
+    ) {
+      id
+      firstName
+      lastName
+    }
+  }`
 
   return $.ajax({
     method: 'POST',
@@ -30,6 +35,6 @@ const createStudent = (first, last, active = true) => {
 }
 
 export default {
-  getAllStudents,
+  fetchAllStudents,
   createStudent
 };
