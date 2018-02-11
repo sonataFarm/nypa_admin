@@ -1,9 +1,9 @@
-import normalize from '../selectors/selectors';
+import { normalize } from '../selectors/selectors';
 
 export const RECEIVE_STUDENTS = "RECEIVE_STUDENTS";
 export const RECEIVE_SINGLE_STUDENT = "RECEIVE_SINGLE_STUDENT";
 
-export const fetchAllStudents = () => (
+export const fetchAllStudents = () => dispatch => (
   APIUtil.fetchAllStudents().then(
     data => {
       const students = normalize(data.allStudents);

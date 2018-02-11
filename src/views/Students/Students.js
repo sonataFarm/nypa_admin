@@ -3,25 +3,30 @@ import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
-import data from './_data';
 
 class Students extends Component {
   constructor(props) {
     super(props);
 
-    this.rows = data.rows;
     this.options = {
       sortIndicator: true,
       paginationSize: 10,
       hidePageListOnlyOnePage: true,
       clearSearch: true,
     };
+
     this.selectRow = {
       mode: 'checkbox',
     };
   }
 
+  componentDidMount() {
+    this.props.fetchAllStudents();
+  }
+
   render() {
+    const rows = this.props.students;
+
     const editButton = (cell, row) => (
       <div>
         <Link to={`/students/${cell}`}><i className="icon-note"></i></Link>
@@ -36,7 +41,7 @@ class Students extends Component {
           </CardHeader>
           <CardBody>
             <BootstrapTable
-              data={this.rows}
+              data={rows}
               version='4'
               striped
               hover

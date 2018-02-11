@@ -47,7 +47,7 @@ import Message from '../../views/UI-Kits/Email/Message/';
 import Compose from '../../views/UI-Kits/Email/Compose/';
 
 // Views
-import Students from '../../views/Students/'
+import StudentsContainer from '../../views/Students/StudentsContainer'
 
 class Full extends Component {
   render() {
@@ -60,7 +60,7 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                <Route path='/students' name='Students' component={Students} />
+                <Route path='/students' name='Students' component={StudentsContainer} />
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/components/buttons" name="Buttons" component={Buttons}/>
                 <Route path="/components/cards" name="Cards" component={Cards}/>

@@ -1,4 +1,4 @@
-import { RECEIVE_STUDENTS, RECEIVE_SINGLE_STUDENT } from '../../actions/student-actions';
+import { RECEIVE_STUDENTS, RECEIVE_SINGLE_STUDENT } from '../../actions/student_actions';
 
 const StudentsReducer = (state = {}, action) => {
   switch (action.type) {

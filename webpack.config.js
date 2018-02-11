@@ -29,13 +29,7 @@ module.exports = (env = {}) => {
       //   port: 9001,
       compress: true,
       hot: true,
-      open: true,
-      proxy: {
-        '/graphql': {
-          target: 'http://localhost:3001',
-          secure: false
-        }
-      }
+      open: true
     },
     module: {
       rules: [
@@ -116,6 +110,6 @@ module.exports = (env = {}) => {
     ],
     resolve: {
       extensions: ['.js', '.jsx']
-    }
+    },
   }
 };
