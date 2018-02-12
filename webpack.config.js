@@ -29,7 +29,10 @@ module.exports = (env = {}) => {
       //   port: 9001,
       compress: true,
       hot: true,
-      open: true
+      open: true,
+      proxy: {
+        "/graphql": "http://localhost:4000"
+      }
     },
     module: {
       rules: [

@@ -4,30 +4,15 @@ import Query from 'graphql-query-builder';
 
 const API_PATH = '/graphql';
 
-const postData = (url, data) => {
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      "Accept": 'application/json'
-    },
-    body: JSON.stringify(data),
-  }).then(response => response.json())
-};
-
-const getData = () => fetch(API_PATH).then(res => console.log(res));
-
 const fetchAllStudents = () => {
-  const query = "query {allStudents {id, firstName, lastName}}"
+  const query = "query {allStudents {id, firstName, lastName, active}}"
 
-  // return getData();
-
-  return postData(API_PATH, { query });
-  // return $.ajax({
-  // dataType: 'json',
-  //   method: 'POST',
-  //   url: API_PATH,
-  //   data: { query }
-  // });
+  return $.ajax({
+  dataType: 'json',
+    method: 'POST',
+    url: API_PATH,
+    data: { query }
+  }).then(res => res.data)
 };
 
 const createStudent = (firstName, lastName, active = true) => {

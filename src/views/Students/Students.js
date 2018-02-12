@@ -53,13 +53,13 @@ class Students extends Component {
               selectRow={this.selectRow}
             >
               <TableHeaderColumn dataField="id" isKey hidden />
-              <TableHeaderColumn dataField="name" dataSort>
+              <TableHeaderColumn dataField="firstName" dataSort>
                 First
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="name" dataSort>
+              <TableHeaderColumn dataField="lastName" dataSort>
                 Last
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="age" dataSort>
+              <TableHeaderColumn dataField="active" dataSort>
                 Active
               </TableHeaderColumn>
               <TableHeaderColumn dataField="id" dataFormat={editButton}>
