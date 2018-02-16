@@ -1,19 +1,23 @@
-import { mutation } from './graphql_util';
-import $ from 'jquery';
+import gql from 'graphql-tag';
 import Query from 'graphql-query-builder';
+import client from './graphql_utils';
 
 const API_PATH = '/graphql';
 
-const fetchAllStudents = () => {
-  const query = "query {allStudents {id, firstName, lastName, active}}"
-
-  return $.ajax({
-  dataType: 'json',
-    method: 'POST',
-    url: API_PATH,
-    data: { query }
+const fetchAllStudents = () => (
+  client.query({
+    query: gql`
+      query students {
+        allStudents {
+          id
+          firstName
+          lastName
+          active
+        }
+      }
+    `,
   }).then(res => res.data)
-};
+);
 
 const createStudent = (firstName, lastName, active = true) => {
   const query = `query {

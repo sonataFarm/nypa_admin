@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+
 import Students from './Students';
 import { denormalize } from '../../selectors/selectors';
-
 import { fetchAllStudents } from '../../actions/student_actions';
 
 const mapStateToProps = state => ({

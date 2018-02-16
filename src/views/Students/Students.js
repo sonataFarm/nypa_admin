@@ -25,6 +25,7 @@ class Students extends Component {
   }
 
   render() {
+    debugger;
     const rows = this.props.students;
 
     const editButton = (cell, row) => (
@@ -54,10 +55,10 @@ class Students extends Component {
             >
               <TableHeaderColumn dataField="id" isKey hidden />
               <TableHeaderColumn dataField="firstName" dataSort>
-                First
+                First Name
               </TableHeaderColumn>
               <TableHeaderColumn dataField="lastName" dataSort>
-                Last
+                Last Name
               </TableHeaderColumn>
               <TableHeaderColumn dataField="active" dataSort>
                 Active

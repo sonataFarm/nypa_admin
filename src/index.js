@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { configureStore } from './store/store';
+import { ApolloProvider } from 'react-apollo';
 
 
 import Root from './components/Root';
@@ -16,19 +17,13 @@ import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
 
-// !!! Testing and debugging
-import Query from 'graphql-query-builder';
-import APIUtil from './util/api_util';
-window.APIUtil = APIUtil;
-window.Query = Query;
-
-/// !!! end
-
 document.addEventListener('DOMContentLoaded', () => {
   const store = configureStore();
   window.store = store;
   const root = document.getElementById('root');
 
   ReactDOM.render(
-    <Root store={store} />, root);
+    <Root store={store} />,
+    root
+  );
 });
