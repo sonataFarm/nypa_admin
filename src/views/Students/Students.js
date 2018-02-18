@@ -25,7 +25,6 @@ class Students extends Component {
   }
 
   render() {
-    debugger;
     const rows = this.props.students;
 
     const editButton = (cell, row) => (
