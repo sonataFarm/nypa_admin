@@ -47,7 +47,7 @@ import Message from '../../views/UI-Kits/Email/Message/';
 import Compose from '../../views/UI-Kits/Email/Compose/';
 
 // Views
-import StudentsContainer from '../../views/Students/StudentsContainer'
+import StudentsContainer from '../../views/Students/Students_container'
 
 class Full extends Component {
   render() {
