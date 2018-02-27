@@ -3,17 +3,15 @@ import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import $ from 'jquery';
 
 class InsertModal extends React.Component {
 
   handleSaveBtnClick = () => {
-    const { columns, onSave } = this.props;
-    const newRow = {};
-    columns.forEach((column, i) => {
-      newRow[column.field] = this.refs[column.field].value;
-    }, this);
-    // You should call onSave function and give the new row
-    onSave(newRow);
+    debugger;
+    const j = $;
+    this.props.createStudent(this.refs.firstName, this.refs.lastName);
+    $('#input-modal').modal('toggle');
   }
 
   render() {
@@ -24,12 +22,22 @@ class InsertModal extends React.Component {
       validateState,
       ignoreEditable
     } = this.props;
+
+    const columnNames = [
+      "First Name",
+      "Last Name"
+    ];
+
     return (
-      <div style={ { backgroundColor: '#eeeeee' } } className='modal-content'>
-        <h2 style={ { color: 'red' } }>Custom Insert Modal</h2>
-        <div>
+      <div
+        id="input-modal"
+        className='modal-content react-bs-table-insert-modal'
+        style={{top: '100px'}}>
+        <div className="modal-body">
           {
-            columns.map((column, i) => {
+            columns.filter(column => (
+              columnNames.indexOf(column.name) !== -1
+            )).map((column, i) => {
               const {
                 editable,
                 format,
@@ -43,12 +51,14 @@ class InsertModal extends React.Component {
                 // and not allow edit, for example ID field
                 return null;
               }
+
               const error = validateState[field] ?
                 (<span className='help-block bg-danger'>{ validateState[field] }</span>) :
                 null;
               return (
                 <div className='form-group' key={ field }>
-                  <label>{ name } : </label>
+                  <label>{ name + ' '}  </label>
+
                   <input ref={ field } type='text' defaultValue={ '' } />
                   { error }
                 </div>
@@ -56,9 +66,9 @@ class InsertModal extends React.Component {
             })
           }
         </div>
-        <div>
-          <button className='btn btn-danger' onClick={ onModalClose }>Leave</button>
-          <button className='btn btn-success' onClick={ () => this.handleSaveBtnClick(columns, onSave) }>Confirm</button>
+        <div className="modal-footer react-bs-table-inser-modal-footer">
+          <button className='btn btn-default btn-secondary' onClick={ onModalClose }>Close</button>
+          <button className='btn btn-primary' onClick={ () => this.handleSaveBtnClick(columns, onSave) }>Save</button>
         </div>
       </div>
     );
@@ -91,7 +101,10 @@ class Students extends Component {
       onModalClose, onSave, columns, validateState, ignoreEditable
     };
 
-    return <InsertModal { ...options } />;
+    return <InsertModal
+      createStudent={ this.props.createStudent }
+      {...options}
+    />;
   }
 
   render() {

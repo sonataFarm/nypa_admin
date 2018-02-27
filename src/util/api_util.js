@@ -19,26 +19,25 @@ const fetchAllStudents = () => (
   }).then(res => res.data)
 );
 
-const createStudent = (firstName, lastName, active = true) => {
-  const query = `query {
-    createStudent(
-      name: {
-        first: ${firstName},
-        last: ${lastName}
-      },
-      active: ${active}
-    ) {
-      id
-      firstName
-      lastName
-    }
-  }`
+const createStudent = (first, last, active = true) => {
+  const mutation = gql`
+    mutation createStudent($name: NAME!, $active: Boolean) {
+      createStudent(
+        name: $name,
+        active: $active
+      ) {
+        id
+        firstName
+        lastName
+        active
+      }
+    }`;
 
-  return $.ajax({
-    method: 'POST',
-    url: API_PATH,
-    data: { query }
-  })
+  const variables = {
+    name: { first, last },
+    active
+  }
+  return client.mutate({ mutation, variables }).then(res => res.data);
 }
 
 export default {

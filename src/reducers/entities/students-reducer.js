@@ -11,7 +11,7 @@ const StudentsReducer = (state = {}, action) => {
     case RECEIVE_SINGLE_STUDENT:
       return {
         ...state,
-        ...action.student
+        [action.student.id]: action.student
       };
 
     default:

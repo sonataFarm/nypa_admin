@@ -13,7 +13,20 @@ export const fetchAllStudents = () => dispatch => (
   )
 );
 
+export const createStudent = (firstName, lastName) => dispatch => (
+  APIUtil.createStudent(firstName, lastName)
+    .then(data => (
+      dispatch(receiveStudent(data.createStudent))
+    )
+  )
+);
+
 export const receiveStudents = students => ({
   type: RECEIVE_STUDENTS,
   students
 });
+
+export const receiveStudent = student => ({
+  type: RECEIVE_SINGLE_STUDENT,
+  student
+})

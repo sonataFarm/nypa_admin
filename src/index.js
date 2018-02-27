@@ -17,6 +17,13 @@ import '../scss/style.scss'
 // Temp fix for reactstrap
 import '../scss/core/_dropdown-menu-right.scss'
 
+// !!! testing and debugging
+import APIUtil from './util/api_util';
+import { createStudent } from './actions/student_actions';
+window.APIUtil = APIUtil;
+window.createStudent = createStudent;
+// !!! end
+
 document.addEventListener('DOMContentLoaded', () => {
   const store = configureStore();
   window.store = store;
