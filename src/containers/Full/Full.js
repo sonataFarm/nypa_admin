@@ -47,7 +47,8 @@ import Message from '../../views/UI-Kits/Email/Message/';
 import Compose from '../../views/UI-Kits/Email/Compose/';
 
 // Views
-import StudentsContainer from '../../views/Students/Students_container'
+import StudentsContainer from '../../views/Students/Students_container';
+import StudentContainer from '../../views/Student/Student_container';
 
 class Full extends Component {
   render() {
@@ -60,7 +61,8 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                <Route path='/students' name='Students' component={StudentsContainer} />
+                <Route exact path='/students' name='Students' component={StudentsContainer} />
+                <Route path='/students/:id' name='Student' component={StudentContainer} />
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/components/buttons" name="Buttons" component={Buttons}/>
                 <Route path="/components/cards" name="Cards" component={Cards}/>

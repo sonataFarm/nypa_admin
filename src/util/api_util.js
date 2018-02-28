@@ -19,6 +19,22 @@ const fetchAllStudents = () => (
   }).then(res => res.data)
 );
 
+const fetchStudent = id => {
+  const query = gql`
+    query student($id: ID!) {
+      student(id: $id) {
+        id
+        firstName
+        lastName
+        active
+      }
+    }`;
+
+  const variables = { id };
+
+  return client.query({ query, variables }).then(res => res.data);
+};
+
 const createStudent = (first, last, active = true) => {
   const mutation = gql`
     mutation createStudent($name: NAME!, $active: Boolean) {
@@ -40,7 +56,36 @@ const createStudent = (first, last, active = true) => {
   return client.mutate({ mutation, variables }).then(res => res.data);
 }
 
+const updateStudent = (id, attributes) => {
+  const mutation = gql`
+  mutation updateStudent($id: ID!, $name: NAME!, $active: Boolean!) {
+    updateStudent(
+      id: $id,
+      name: $name,
+      active: $active
+    ) {
+      id
+      firstName
+      lastName
+      active
+    }
+  }`;
+
+  const variables = {
+    id,
+    name: {
+      first: attributes.firstName,
+      last: attributes.lastName
+    },
+    active: attributes.active
+  };
+
+  return client.mutate({ mutation, variables}).then(res => res.data);
+}
+
 export default {
   fetchAllStudents,
-  createStudent
+  fetchStudent,
+  createStudent,
+  updateStudent
 };

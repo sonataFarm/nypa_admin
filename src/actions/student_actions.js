@@ -13,11 +13,26 @@ export const fetchAllStudents = () => dispatch => (
   )
 );
 
+export const fetchStudent = id => dispatch => (
+  APIUtil.fetchStudent(id)
+    .then(data => (
+      dispatch(receiveStudent(data.student))
+    )
+  )
+);
+
 export const createStudent = (firstName, lastName) => dispatch => (
   APIUtil.createStudent(firstName, lastName)
     .then(data => (
       dispatch(receiveStudent(data.createStudent))
     )
+  )
+);
+
+export const updateStudent = (id, attributes) => dispatch => (
+  // attributes is { firstName, lastName, active }
+  APIUtil.updateStudent(id, attributes).then(
+    data => dispatch(receiveStudent(data.updateStudent))
   )
 );
 
