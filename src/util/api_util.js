@@ -4,6 +4,7 @@ import client from './graphql_utils';
 
 const API_PATH = '/graphql';
 
+// STUDENTS
 const fetchAllStudents = () => (
   client.query({
     query: gql`
@@ -83,9 +84,78 @@ const updateStudent = (id, attributes) => {
   return client.mutate({ mutation, variables}).then(res => res.data);
 }
 
+// AWARDS
+const fetchAllAwards = () => {
+  const query = gql`
+    query allAwards {
+      allAwards {
+        id
+        date
+        competition
+        placement
+        student {
+          id
+        }
+      }
+    }`;
+
+  return client.query({ query }).then(res => res.data);
+}
+
+const fetchAward = id => {
+  const query = gql`
+    query award($id: ID!) {
+      award(
+        id: $id
+      ) {
+        id
+        date
+        competition
+        placement
+        student {
+          id
+        }
+      }
+    }`;
+
+  return client.query({ query, variables: { id } }).then(res => res.data);
+}
+
+const createAward = awardParams => {
+  // awardParams is { student_id, competition, placement, date }
+
+  const mutation = gql`
+    mutation award(
+      $student_id: ID!,
+      $competition: String!,
+      $placement: String!,
+      $date: Date!
+    ) {
+      createAward(
+        student_id: $student_id,
+        competition: $competition,
+        placement: $placement,
+        date: $date
+      ) {
+        id
+        date
+        competition
+        placement
+        student {
+          id
+        }
+      }
+    }`;
+
+  return client.mutate({ mutation, variables: awardParams });
+};
+
 export default {
   fetchAllStudents,
   fetchStudent,
   createStudent,
-  updateStudent
+  updateStudent,
+  fetchAllAwards,
+  fetchAward,
+  createAward,
 };

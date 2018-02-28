@@ -19,9 +19,9 @@ import '../scss/core/_dropdown-menu-right.scss'
 
 // !!! testing and debugging
 import APIUtil from './util/api_util';
-import { createStudent } from './actions/student_actions';
+import * as AwardActions from './actions/award_actions';
 window.APIUtil = APIUtil;
-window.createStudent = createStudent;
+window.AwardActions = AwardActions;
 // !!! end
 
 document.addEventListener('DOMContentLoaded', () => {

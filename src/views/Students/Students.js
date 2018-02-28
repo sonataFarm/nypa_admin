@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
-import $ from 'jquery';
 import CreateStudentModalButton from './CreateStudentModalButton';
 
 class Students extends Component {
