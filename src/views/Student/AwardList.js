@@ -21,9 +21,7 @@ class AwardList extends React.Component {
             <i className="icon-trophy"></i>Awards
           </CardHeader>
           <CardBody>
-            <CreateAwardModalButton
-            createAward={this.props.createAward}
-          / >
+            <CreateAwardModalButton createAward={this.props.createAward} />
             <BootstrapTable
               data={rows}
               version='4'
@@ -40,7 +38,7 @@ class AwardList extends React.Component {
               <TableHeaderColumn dataField="competition" dataSort>
                 Competition
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="Placement" dataSort>
+              <TableHeaderColumn dataField="placement" dataSort>
                 Placement
               </TableHeaderColumn>
               <TableHeaderColumn dataField="id" dataFormat={editButton}>

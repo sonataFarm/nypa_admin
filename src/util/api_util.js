@@ -21,7 +21,7 @@ const fetchStudent = id => {
   return client.query(
     { query: QUERIES.FETCH_STUDENT, variables }
   ).then(
-    res => res.data
+    res => res.data.student
   );
 };
 
@@ -70,7 +70,11 @@ const fetchAward = id => (
 
 const fetchStudentAwards = studentId => {
   const variables = { student_id: studentId };
-  return client.query({ query: QUERIES.FETCH_AWARDS, variables });
+  return client.query(
+    { query: QUERIES.FETCH_STUDENT_AWARDS, variables }
+  ).then(
+    res => normalize(res.data.getStudentAwards)
+  );
 }
 
 const createAward = awardParams => {

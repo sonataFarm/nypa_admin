@@ -7,6 +7,9 @@ const FETCH_ALL_STUDENTS = gql`
       firstName
       lastName
       active
+      awards {
+        id
+      }
     }
   }
 `;
@@ -55,9 +58,24 @@ const FETCH_AWARD = gql`
   }
 `;
 
+const FETCH_STUDENT_AWARDS = gql`
+  query fetchStudentAwards($student_id: ID!) {
+    getStudentAwards(student_id: $student_id) {
+      id
+      date
+      competition
+      placement
+      student {
+        id
+      }
+    }
+  }
+`;
+
 export default {
   FETCH_ALL_STUDENTS,
   FETCH_STUDENT,
   FETCH_ALL_AWARDS,
   FETCH_AWARD,
+  FETCH_STUDENT_AWARDS
 };

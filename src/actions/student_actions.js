@@ -1,9 +1,10 @@
 import { normalize } from '../selectors/selectors';
 import APIUtil from '../util/api_util';
-import { receiveAwards } from './award_actions';
+import { receiveAwards, startLoadingAwards } from './award_actions';
 
 export const RECEIVE_STUDENTS = "RECEIVE_STUDENTS";
 export const RECEIVE_SINGLE_STUDENT = "RECEIVE_SINGLE_STUDENT";
+export const START_LOADING_STUDENTS = "START_LOADING_STUDENTS";
 
 export const fetchAllStudents = () => dispatch => (
   APIUtil.fetchAllStudents().then(
@@ -13,20 +14,20 @@ export const fetchAllStudents = () => dispatch => (
   )
 );
 
-export const fetchStudent = studentId => dispatch => (
-  Promise.all([
-    APIUtil.fetchStudent(studentId),
-    APIUtil.fetchStudentAwards(studentId)
-  ])
-    .then(data => {
-      let awards = [...data.student.awards];
-      let student = { ...data.student };
+export const fetchStudent = studentId => dispatch => {
+  dispatch(startLoadingStudents());
+  dispatch(startLoadingAwards());
 
-      student.awards = awards.map(award => award.id);
-      dispatch(receiveStudent(student));
+  return Promise.all([
+    APIUtil.fetchStudentAwards(studentId),
+    APIUtil.fetchStudent(studentId)
+  ]).then(data => {
+      const [awards, student] = data;
       dispatch(receiveAwards(awards));
-    })
-);
+
+      dispatch(receiveStudent(student));
+  });
+};
 
 export const createStudent = (firstName, lastName) => dispatch => (
   APIUtil.createStudent(firstName, lastName)
@@ -52,3 +53,7 @@ export const receiveStudent = student => ({
   type: RECEIVE_SINGLE_STUDENT,
   student
 })
+
+export const startLoadingStudents = () => ({
+  type: START_LOADING_STUDENTS
+});

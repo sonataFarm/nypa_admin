@@ -2,6 +2,7 @@ import APIUtil from '../util/api_util';
 
 export const RECEIVE_AWARDS = 'RECEIVE_AWARDS';
 export const RECEIVE_AWARD = 'RECEIVE_AWARD';
+export const START_LOADING_AWARDS = 'START_LOADING_AWARDS';
 
 export const fetchAllAwards = () => dispatch => (
   APIUtil.fetchAllAwards().then(
@@ -29,4 +30,8 @@ export const receiveAwards = awards => ({
 export const receiveAward = award => ({
   type: RECEIVE_AWARD,
   award
+});
+
+export const startLoadingAwards = () => ({
+  type: START_LOADING_AWARDS
 });

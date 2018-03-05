@@ -7,15 +7,19 @@ import { createAward } from '../../actions/award_actions';
 const mapStateToProps = (state, ownProps) => {
   const student = state.entities.students[ownProps.match.params.id];
 
-  let awards;
-  if (student.awards) {
-    awards = student.awards.map(
-      id => state.entities.awards[id]
-    );
-  } else {
-    awards = [];
-  }
-  return { student, awards };
+  const awards = student.awards.map(
+    award => state.entities.awards[award.id]
+  );
+
+  const loaded = student && student.awards.every(
+    award => state.entities.awards[award.id]
+  );
+
+  return {
+    student,
+    awards,
+    loaded
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

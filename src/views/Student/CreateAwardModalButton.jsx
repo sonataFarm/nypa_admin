@@ -62,7 +62,7 @@ export default class CreateAwardModalButton extends React.Component {
             <label>Placement</label>
             <input type="text" ref="last" />
 
-            <label>Placement</label>
+            <label>Date</label>
             <input type="text" ref="last" />
 
             <input type="submit" value="Submit" />
