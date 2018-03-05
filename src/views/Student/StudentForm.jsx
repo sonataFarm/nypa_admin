@@ -9,14 +9,14 @@ class StudentForm extends React.Component {
     this.state = { firstName, lastName, active };
   }
 
-  handleChange = (event) => {
+  handleChange = e => {
     let newValue;
-    if (event.target.id === "active") {
-      newValue = event.target.checked;
+    if (e.target.id === "active") {
+      newValue = e.target.checked;
     } else {
-      newValue = event.target.value;
+      newValue = e.target.value;
     }
-    this.setState({ [event.target.id]: newValue });
+    this.setState({ [e.target.id]: newValue });
   }
 
   handleSubmit = (event) => {

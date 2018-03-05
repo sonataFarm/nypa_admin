@@ -1,18 +1,27 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, Form, Label, Input } from 'reactstrap';
+import AwardList from './AwardList';
 
 import StudentForm from './StudentForm';
 
 class Student extends React.Component {
   componentDidMount() {
-    if (!this.props.student) this.fetchStudent();
+    this.props.fetchStudent();
   }
 
   render() {
-    return <StudentForm
-      student={this.props.student}
-      updateStudent={this.props.updateStudent}
-    />;
+    return (
+      <div>
+        <StudentForm
+          student={this.props.student}
+          updateStudent={this.props.updateStudent}
+        />
+        <AwardList
+          awards={this.props.awards}
+          createAward={this.props.createAward}
+        />
+      </div>
+    );
   }
 }
 

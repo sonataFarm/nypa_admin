@@ -23,7 +23,7 @@ class AwardList extends React.Component {
           <CardBody>
             <CreateAwardModalButton
             createAward={this.props.createAward}
-          />
+          / >
             <BootstrapTable
               data={rows}
               version='4'
@@ -53,3 +53,5 @@ class AwardList extends React.Component {
     );
   }
 }
+
+export default AwardList;
