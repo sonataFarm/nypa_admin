@@ -2,7 +2,12 @@ import gql from 'graphql-tag';
 import client from './graphql_utils';
 import QUERIES from './query_strings';
 import MUTATIONS from './mutation_strings';
-import { normalize } from '../selectors/selectors';
+import {
+  normalizeEntitiesArray,
+  transformStudent,
+  transformAward,
+  transformAwards
+ } from '../selectors/selectors';
 
 const API_PATH = '/graphql';
 
@@ -11,7 +16,7 @@ const fetchAllStudents = () => (
   client.query(
     { query: QUERIES.FETCH_ALL_STUDENTS }
   ).then(
-    res => normalize(res.data.allStudents)
+    res => normalizeEntitiesArray(res.data.allStudents)
   )
 );
 
@@ -34,7 +39,7 @@ const createStudent = (first, last, active = true) => {
   return client.mutate(
     { mutation: MUTATIONS.CREATE_STUDENT, variables }
   ).then(
-    res => res.data
+    res => transformStudent(res.data.createStudent)
   );
 }
 
@@ -50,40 +55,46 @@ const updateStudent = (id, attributes) => {
 
   return client.mutate(
     { mutation: MUTATIONS.UPDATE_STUDENT, variables }
-  ).then(
-    res => res.data
-  );
+  ).then(res =>
+    transformStudent(res.data.updateStudent));
 }
 
 // AWARDS
 const fetchAllAwards = () => (
-  client.query(QUERIES.FETCH_ALL_AWARDS).then(res => res.data)
+  client.query({ query: QUERIES.FETCH_ALL_AWARDS }).then(res =>
+    transformAwards(res.data.allAwards))
 );
 
 const fetchAward = id => (
   client.query(
     { query: QUERIES.FETCH_AWARD, variables: { id } }
-  ).then(
-    res => res.data
-  )
-)
+  ).then(res =>
+    transformAward(res.data.award))
+);
 
 const fetchStudentAwards = studentId => {
   const variables = { student_id: studentId };
   return client.query(
     { query: QUERIES.FETCH_STUDENT_AWARDS, variables }
   ).then(
-    res => normalize(res.data.getStudentAwards)
+    res => {
+      const awards = transformAwards(res.data.getStudentAwards);
+      return normalizeEntitiesArray(awards);
+    }
   );
 }
 
 const createAward = awardParams => {
-  // awardParams is { student_id, competition, placement, date }
+  // awardParams is { studentId, competition, placement, date }
   const variables = awardParams;
-  return client.mutate(
-    { mutation: MUTATIONS.CREATE_AWARD, variables }
-  ).then(
-    res => res.data
+  return client.mutate({
+    mutation: MUTATIONS.CREATE_AWARD,
+    variables: {
+      ...variables,
+      student_id: variables.studentId
+    }
+  }).then(
+    res => transformAward(res.data.createAward)
   );
 };
 

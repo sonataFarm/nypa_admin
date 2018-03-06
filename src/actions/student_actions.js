@@ -1,9 +1,15 @@
-import { normalize } from '../selectors/selectors';
 import APIUtil from '../util/api_util';
+
+import {
+  normalizeEntitiesArray,
+  transformStudent,
+  transformAward,
+  transformAwards
+} from '../selectors/selectors';
 import { receiveAwards, startLoadingAwards } from './award_actions';
 
 export const RECEIVE_STUDENTS = "RECEIVE_STUDENTS";
-export const RECEIVE_SINGLE_STUDENT = "RECEIVE_SINGLE_STUDENT";
+export const RECEIVE_STUDENT = "RECEIVE_STUDENT";
 export const START_LOADING_STUDENTS = "START_LOADING_STUDENTS";
 
 export const fetchAllStudents = () => dispatch => (
@@ -24,23 +30,19 @@ export const fetchStudent = studentId => dispatch => {
   ]).then(data => {
       const [awards, student] = data;
       dispatch(receiveAwards(awards));
-
-      dispatch(receiveStudent(student));
+      return dispatch(receiveStudent(student));
   });
 };
 
 export const createStudent = (firstName, lastName) => dispatch => (
   APIUtil.createStudent(firstName, lastName)
-    .then(data => (
-      dispatch(receiveStudent(data.createStudent))
-    )
-  )
+    .then(student => dispatch(receiveStudent(student)))
 );
 
 export const updateStudent = (id, attributes) => dispatch => (
   // attributes is { firstName, lastName, active }
   APIUtil.updateStudent(id, attributes).then(
-    data => dispatch(receiveStudent(data.updateStudent))
+    student => dispatch(receiveStudent(student))
   )
 );
 
@@ -50,7 +52,7 @@ export const receiveStudents = students => ({
 });
 
 export const receiveStudent = student => ({
-  type: RECEIVE_SINGLE_STUDENT,
+  type: RECEIVE_STUDENT,
   student
 })
 

@@ -1,6 +1,6 @@
 import {
   START_LOADING_STUDENTS,
-  RECEIVE_SINGLE_STUDENT
+  RECEIVE_STUDENT
 } from '../../actions/student_actions';
 
 import {
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
       return { ...state, students: true };
     case START_LOADING_AWARDS:
       return { ...state, awards: true };
-    case RECEIVE_SINGLE_STUDENT:
+    case RECEIVE_STUDENT:
       return { ...state, students: false };
     case RECEIVE_AWARDS:
       return { ...state, awards: false }

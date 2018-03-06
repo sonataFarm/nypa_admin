@@ -10,6 +10,9 @@ const CREATE_STUDENT = gql`
       firstName
       lastName
       active
+      awards {
+        id
+      }
     }
   }
 `;
@@ -25,6 +28,9 @@ const UPDATE_STUDENT = gql`
       firstName
       lastName
       active
+      awards {
+        id
+      }
     }
   }
 `;
